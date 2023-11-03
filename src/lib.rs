@@ -54,10 +54,13 @@ impl Uri {
         Uri(vectorized_uri)
     }
 }
+
+
 struct HttpRequest {
     method: HttpMethod,
     uri: Uri, 
 }
+
 impl HttpRequest {
     fn new(request_line: &str) -> HttpRequest {
         let mut request_line = request_line.split(' ');
@@ -77,6 +80,7 @@ struct HttpResponse {
     content_length: usize,
     content: String,
 }
+
 impl HttpResponse {
     async fn new(status: HttpStatus, content: &str) -> io::Result<HttpResponse> {
         let content = fs::read_to_string(content).await?;
